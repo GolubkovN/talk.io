@@ -1,5 +1,7 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
+import { ClerkProvider } from '@clerk/clerk-expo'
+import { tokenCache } from '@clerk/clerk-expo/token-cache'
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
@@ -15,19 +17,15 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="(users)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ 
-            presentation: 'formSheet', 
-            sheetAllowedDetents: [0.25, 0.5, 1], 
-            sheetInitialDetentIndex: 1, 
-            headerShown: false 
-          }} />
-        </Stack>
+      <ClerkProvider tokenCache={tokenCache} publishableKey={process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!}>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(users)" options={{ headerShown: false }} />
+          </Stack>
+        </GestureHandlerRootView>
         <StatusBar style="auto" />
-      </GestureHandlerRootView>
+      </ClerkProvider>
     </ThemeProvider>
   );
 }
