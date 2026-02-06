@@ -14,8 +14,8 @@ export const getMeController = async (req: AuthRequest, res: Response, next: Nex
     return res.status(200).json(user);
   } catch (error) {
     console.error("Error in getMeController", error);
-    next(error);
     res.status(500);
+    next(error);
   }
 }
 
@@ -32,7 +32,7 @@ export const authCallbackController = async (req: Request, res: Response, next: 
       user = await User.create({
         clerkId,
         email: clerkUser?.emailAddresses[0]?.emailAddress,
-        userName: clerkUser.firstName ?
+        name: clerkUser.firstName ?
           `${clerkUser.firstName} ${clerkUser.lastName ?? ''}`.trim()
           : clerkUser?.emailAddresses[0]?.emailAddress?.split('@')[0],
         avatar: clerkUser?.imageUrl,
@@ -43,7 +43,7 @@ export const authCallbackController = async (req: Request, res: Response, next: 
     return res.status(200).json(user);
   } catch (error) {
     console.error("Error in uathCallbackController", error);
-    next(error)
-    res.status(500)
+    res.status(500);
+    next(error);
   }
 }

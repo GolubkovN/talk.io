@@ -1,7 +1,12 @@
 import { Router } from "express";
+import { protectRoute } from "../middlewares/auth";
+import { getChatsController, getChatWithParticipantController } from "../controllers/chatController";
 
 const router = Router();
 
-router.get('/', (req, res) => {});
+router.use(protectRoute);
+
+router.get('/', getChatsController);
+router.get('/with/:participantId', getChatWithParticipantController);
 
 export default router;
