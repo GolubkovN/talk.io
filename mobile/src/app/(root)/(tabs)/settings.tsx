@@ -3,33 +3,32 @@ import ParallaxScrollView from '@/src/components/ParalaxScrollView';
 import { ThemedView } from '@/src/components/ThemedView';
 import { IconSymbol } from '@/src/components/ui/IconSymbol';
 import { Fonts } from '@/src/constants/theme';
+import { useAppDispatch, useAppSelector } from '@/src/hooks/store';
+import { clearCurrentUser, selectCurrentUser } from '@/src/store';
 import { useAuth } from '@clerk/clerk-expo';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { Image } from 'expo-image';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function SettingsScreen() {
   const { signOut } = useAuth();
+  const currentUser = useAppSelector(selectCurrentUser);
+  const dispatch = useAppDispatch();
+  const { avatar } = currentUser ?? {};
+
+  const logout = () => {
+    signOut();
+    dispatch(clearCurrentUser());
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
-      headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="gear"
-          style={styles.headerImage}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <BaseText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
-        </BaseText>
-      </ThemedView>
+   <ScrollView contentInsetAdjustmentBehavior='automatic'>
+    <View className="items-center justify-center gap-2 py-10 mb-10">
+      <Image source={{ uri: avatar ?? '' }} style={{ width: 150, height: 150, borderRadius: 100 }} />
+      <Text className="text-2xl font-bold">{currentUser?.name}</Text>
+    </View>
+    <View className="px-4">
       <Pressable
-        onPress={() => signOut()}
+        onPress={logout}
         className="bg-red-500 p-4 rounded-md flex-row-reverse items-center justify-center gap-2">
         <Text className="text-white">Sign Out</Text>
         <IconSymbol
@@ -38,7 +37,8 @@ export default function SettingsScreen() {
           name="power"
         />
       </Pressable>
-    </ParallaxScrollView>
+    </View>
+   </ScrollView>
   );
 }
 
