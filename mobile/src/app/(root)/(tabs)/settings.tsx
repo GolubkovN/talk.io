@@ -3,9 +3,11 @@ import ParallaxScrollView from '@/src/components/ParalaxScrollView';
 import { ThemedView } from '@/src/components/ThemedView';
 import { IconSymbol } from '@/src/components/ui/IconSymbol';
 import { Fonts } from '@/src/constants/theme';
-import { StyleSheet } from 'react-native';
+import { useAuth } from '@clerk/clerk-expo';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
 export default function SettingsScreen() {
+  const { signOut } = useAuth();
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -26,6 +28,16 @@ export default function SettingsScreen() {
           Explore
         </BaseText>
       </ThemedView>
+      <Pressable
+        onPress={() => signOut()}
+        className="bg-red-500 p-4 rounded-md flex-row-reverse items-center justify-center gap-2">
+        <Text className="text-white">Sign Out</Text>
+        <IconSymbol
+          size={20}
+          color="#FFFFFF"
+          name="power"
+        />
+      </Pressable>
     </ParallaxScrollView>
   );
 }
