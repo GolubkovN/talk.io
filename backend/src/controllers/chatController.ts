@@ -52,7 +52,7 @@ export const getChatWithParticipantController = async (req: AuthRequest, res: Re
     .populate('lastMessage')
 
     if (!chat) {
-      const newChat = await new Chat({ participants: [userId, participantId] })
+      const newChat = new Chat({ participants: [userId, participantId] })
       await newChat.save();
       chat = await newChat.populate('participants', 'name email avatar');
     }
