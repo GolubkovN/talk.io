@@ -2,6 +2,8 @@ import path from "node:path";
 import { config } from "dotenv";
 import app from "./src/app";
 import { connectDB } from "./src/config/db";
+import { createServer } from "http";
+import { initializeSocket } from "./src/utils/socket";
 
 const nodeEnv = process.env.NODE_ENV ?? "development";
 
@@ -17,8 +19,13 @@ config({ path: path.resolve(process.cwd(), "env", ".env.local"), override: true 
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
+
+const httpServer = createServer(app);
+
+
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  initializeSocket(httpServer);
+  httpServer.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
 }).catch((error) => {
