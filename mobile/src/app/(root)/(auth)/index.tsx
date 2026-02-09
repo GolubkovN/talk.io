@@ -1,90 +1,92 @@
-import { ActivityIndicator, Pressable, Text, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, Pressable, View } from "react-native";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthSocial } from "@/src/hooks/useAuthSocial";
+import styles from './styles';
+import { useUnistyles } from "react-native-unistyles";
+import { AccentText, Paragraph2, Title1 } from "@/src/components/atoms/Typography";
 
 export default function Login() {
-  const { width,height } = useWindowDimensions()
   const { handleSocialAuth, loadingStrategy } = useAuthSocial();
+  const { theme } = useUnistyles();
+  
   const isLoading = loadingStrategy !== null;
 
   return (
-    <View className="bg-surface-dark flex-1">
-      <View className="absolute inset-0 overflow-hidden"></View>
+    <View style={styles.container}>
+      <View style={styles.background}></View>
 
-      <SafeAreaView className="flex-1">
+      <SafeAreaView>
         {/* Top Section - Branding */}
-        <View className="items-center pt-10">
+        <View style={styles.topSection}>
           <Image
             source={require("../../../assets/images/logo.png")}
-            style={{ width: 100, height: 100, marginVertical: -20 }}
+            style={styles.logoImage}
             contentFit="contain"
           />
-          <Text className="text-4xl font-bold text-primary font-serif tracking-wider uppercase">
+          <Title1 overrideStyle={styles.title}>
             Talk.io
-          </Text>
+          </Title1>
         </View>
 
         {/* CENTER SECTION - HERO IMG */}
-        <View className="flex-1 justify-center items-center px-6">
+        <View style={styles.centerSection}>
           <Image
             source={require("../../../assets/images/auth.png")}
-            style={{
-              width: width - 48,
-              height: height * 0.3,
-            }}
+            style={styles.heroImage}
             contentFit="contain"
           />
 
           {/* Headline */}
-          <View className="mt-6 items-center">
-            <Text className="text-5xl font-bold text-foreground text-center font-sans">
+          <View style={styles.headlineSection}>
+            <AccentText overrideStyle={styles.headlineTitle}>
               Connect & Chat
-            </Text>
-            <Text className="text-3xl font-bold text-primary font-mono">Seamlessly</Text>
+            </AccentText>
+            <AccentText overrideStyle={styles.headlineText}>Seamlessly</AccentText>
           </View>
 
           {/* AUTH BUTTONS */}
-          <View className="flex-row gap-4 mt-10">
+          <View style={styles.authButtonsSection}>
             {/* GOOGLE BTN */}
             <Pressable
-              className="flex-1 flex-row items-center justify-center gap-2 bg-white/95 py-4 rounded-2xl active:scale-[0.97]"
+              style={styles.buttonContent}
               disabled={isLoading}
               accessibilityRole="button"
               accessibilityLabel="Continue with Google"
               onPress={() => handleSocialAuth("oauth_google")}
             >
-              {loadingStrategy === "oauth_google" ? (
-                <ActivityIndicator size="small" color="#1a1a1a" />
+             <View style={styles.buttonContent}>
+             {loadingStrategy === "oauth_google" ? (
+                <ActivityIndicator size="small" color={theme.colors.textPrimary} />
               ) : (
-                <>
-                  <Image
+                <Image
                     source={require("../../../assets/images/google.png")}
                     style={{ width: 20, height: 20 }}
                     contentFit="contain"
                   />
-                  <Text className="text-gray-900 font-semibold text-sm">Google</Text>
-                </>
               )}
+              <Paragraph2 overrideStyle={styles.buttonText}>Google</Paragraph2>
+             </View>
             </Pressable>
 
             {/* APPLE BTN */}
             <Pressable
-              className="flex-1 flex-row items-center justify-center gap-2 bg-white/10 py-4 rounded-2xl border border-white/20 active:scale-[0.97]"
               disabled={isLoading}
               accessibilityRole="button"
               accessibilityLabel="Continue with Apple"
               onPress={() => handleSocialAuth("oauth_apple")}
             >
+              <View style={styles.buttonContent}>
               {loadingStrategy === "oauth_apple" ? (
-                <ActivityIndicator size="small" color="#FFFFFF" />
+                <ActivityIndicator size="small" color={theme.colors.textPrimary} />
               ) : (
                 <>
-                  <Ionicons name="logo-apple" size={20} color="#FFFFFF" />
-                  <Text className="text-foreground font-semibold text-sm">Apple</Text>
+                  <Ionicons name="logo-apple" size={20} color={theme.colors.textPrimary} />
                 </>
               )}
+              <Paragraph2 overrideStyle={styles.buttonText}>Apple</Paragraph2>
+              </View>
             </Pressable>
           </View>
         </View>
@@ -93,3 +95,4 @@ export default function Login() {
     </View>
   );
 }
+

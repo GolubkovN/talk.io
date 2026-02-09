@@ -1,4 +1,3 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { ClerkProvider } from '@clerk/clerk-expo'
 import { tokenCache } from '@clerk/clerk-expo/token-cache'
@@ -7,14 +6,14 @@ import * as SplashScreen from "expo-splash-screen";
 import { store } from '../store'
 import { Provider as ReduxProvider } from 'react-redux'
 import 'react-native-reanimated';
-import '../../global.css';
 
 import { validateEnv } from "../../config/validateEnv";
 
 
-import { useColorScheme } from '@/src/hooks/use-color-scheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { AuthSync } from '../components';
+import { EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY } from '@/config/env';
+import { useUnistyles } from 'react-native-unistyles';
 
 validateEnv();
 SplashScreen.preventAutoHideAsync()
@@ -23,22 +22,18 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  
+  const { theme } = useUnistyles();
 
   return (
-    <ClerkProvider tokenCache={tokenCache}>
+    <ClerkProvider tokenCache={tokenCache} publishableKey={EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY}>
       <ReduxProvider store={store}>
-        <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <AuthSync />
-            <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: "#0D0D0F" } }}>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="login" options={{ headerShown: false }} />
-            </Stack>
-          </GestureHandlerRootView>
-          <StatusBar style="auto" />
-        </ThemeProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <AuthSync />
+          <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: theme.colors.bg } }}>
+            <Stack.Screen name="(root)" options={{ headerShown: false }} />
+          </Stack>
+        </GestureHandlerRootView>
+        <StatusBar style="auto" />
       </ReduxProvider>
     </ClerkProvider>
   );
