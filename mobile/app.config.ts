@@ -69,6 +69,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         ios: { useFrameworks: "static" },
       },
     ],
+    ["expo-font"]
   ],
 
   experiments: {
