@@ -1,7 +1,6 @@
-import { BaseButton, ButtonProps } from "./BaseButton";
+import { BaseButton } from "./BaseButton";
+import { AppButtonProps } from "./types";
 
-export type SecondaryButtonProps = Omit<ButtonProps, "variant">;
-
-export const SecondaryButton = (props: SecondaryButtonProps) => {
+export const SecondaryButton = (props: AppButtonProps) => {
   return <BaseButton variant="secondary" {...props} />;
 };

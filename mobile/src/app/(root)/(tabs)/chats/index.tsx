@@ -1,13 +1,35 @@
-import { Title1 } from "@/src/components/atoms";
-
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import { stylesheet } from "./styles";
 
-export default function ChatsScreen() {
-  return (
-    <View style={stylesheet.container}>
-      <Title1>Chats</Title1>
-    </View>
+import { EmptyState } from "@/src/components";
 
+export default function ChatsScreen() {
+
+  const data: any[] = [];
+
+  const renderEmptyState = () => {
+    return (
+      <View style={stylesheet.emptyStateContainer}>
+        <EmptyState 
+          title="No conversations yet" 
+          description="Start a new conversation by tapping the plus button at the top right corner." 
+          onPress={() => {}}  
+          buttonLabel="Start a new conversation"
+        />
+      </View>
+    );
+  };
+
+  return (
+    <FlatList
+      contentContainerStyle={stylesheet.container}
+      showsVerticalScrollIndicator={false}
+      style={stylesheet.inner}
+      data={data}
+      scrollEnabled={data.length > 0}
+      renderItem={() => <View />}
+      ListEmptyComponent={() => renderEmptyState()} />
   );
 }
+
+      

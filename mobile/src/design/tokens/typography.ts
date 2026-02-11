@@ -1,4 +1,4 @@
-import { radii } from "./radii";
+import { sizes } from "./sizes";
 
 export const fonts = {
   thin: "Inter_100Thin",
@@ -24,43 +24,43 @@ export const fonts = {
 
 export const typography = {
   title1: {
-    fontSize: radii.xxxxl,
+    fontSize: sizes.font.xxxl,
     lineHeight: 50,
     letterSpacing: -0.2,
     fontFamily: fonts.bold,
   },
   title2: {
-    fontSize: radii.xxxl,
+    fontSize: sizes.font.xxxl,
     lineHeight: 46,
     letterSpacing: -0.1,
     fontFamily: fonts.semibold,
   },
   title3: {
-    fontSize: radii.xxl,
+    fontSize: sizes.font.xxl,
     lineHeight: 32,
     letterSpacing: -0.1,
     fontFamily: fonts.extraBold,
   },
   paragraph: {
-    fontSize: radii.xl,
+    fontSize: sizes.font.m,
     lineHeight: 26,
     letterSpacing: 0,
     fontFamily: fonts.regular,
   },
   paragraph2: {
-    fontSize: radii.lg,
+    fontSize: sizes.font.s,
     lineHeight: 18,
     letterSpacing: 0,
     fontFamily: fonts.regular,
   },
   caption: {
-    fontSize: radii.md,
+    fontSize: sizes.font.m,
     lineHeight: 16,
     letterSpacing: 0.2,
     fontFamily: fonts.medium,
   },
   accentText: {
-    fontSize: radii.xxl,
+    fontSize: sizes.font.xxl,
     lineHeight: 34,
     letterSpacing: 0,
     fontFamily: fonts.lobster,

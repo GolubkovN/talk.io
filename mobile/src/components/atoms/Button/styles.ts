@@ -8,6 +8,8 @@ export const stylesheet = StyleSheet.create((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
+    flexDirection: "row",
+    gap: 6,
     variants: {
       variant: {
         primary: {
@@ -17,6 +19,17 @@ export const stylesheet = StyleSheet.create((theme) => ({
         secondary: {
           backgroundColor: theme.colors.surface,
           borderColor: theme.colors.primary,
+        },
+        auth: {
+          backgroundColor: theme.colors.buttonBlur,
+          borderWidth: 0,
+        },
+        icon: {
+          borderColor: theme.colors.border,
+          borderRadius: theme.radii.pill,
+          paddingHorizontal: 0,
+          height: 48,
+          width: 48,
         },
       },
     },
@@ -29,6 +42,9 @@ export const stylesheet = StyleSheet.create((theme) => ({
         },
         secondary: {
           color: theme.colors.primary,
+        },
+        auth: {
+          color: theme.colors.textPrimary,
         },
       },
     },

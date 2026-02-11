@@ -2,7 +2,7 @@ import { Icon, Label, NativeTabs } from "expo-router/unstable-native-tabs";
 
 export default function TabLayout() {
   return (
-    <NativeTabs minimizeBehavior="onScrollDown">
+    <NativeTabs>
       <NativeTabs.Trigger name="chats">
         <Label>Chats</Label>
         <Icon sf="message" drawable="custom_android_drawable" />

@@ -2,11 +2,17 @@ import { useSSO } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { Alert } from "react-native";
 
-type TStrategy = "oauth_google" | "oauth_apple";
+type TStrategy = "oauth_google" | "oauth_apple" | "oauth_github";
 export const useAuthSocial = () => {
   const [ loadingStrategy, setLoadingStrategy ] = useState<TStrategy | null>(null);
 
   const { startSSOFlow } = useSSO();
+
+  const providerMap = {
+    "oauth_google": "google",
+    "oauth_apple": "apple",
+    "oauth_github": "github",
+  }
 
   const handleSocialAuth = async (strategy: TStrategy) => {
     setLoadingStrategy(strategy);
@@ -17,7 +23,7 @@ export const useAuthSocial = () => {
       }
     } catch (error) {
       console.error(error);
-      const provider = strategy === "oauth_google" ? "google" : "apple";
+      const provider = providerMap[strategy];
       Alert.alert("Error", `Failed to sign in with ${provider}`);
     }
     finally {
