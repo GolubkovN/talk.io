@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native-unistyles";
 
-export const stylesheet = StyleSheet.create((_theme) => ({
+export const stylesheet = StyleSheet.create((theme) => ({
   container: {
     alignItems: "center",
     justifyContent: "center",
@@ -9,10 +9,12 @@ export const stylesheet = StyleSheet.create((_theme) => ({
   title: {
     marginTop: 24,
     textAlign: "center",
+    color: theme.colors.primary,
   },
   description: {
     marginTop: 8,
     textAlign: "center",
     marginBottom: 24,
+    color: theme.colors.textPrimary,
   },
 }));

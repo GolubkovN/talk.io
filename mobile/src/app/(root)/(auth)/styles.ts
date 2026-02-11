@@ -3,18 +3,17 @@ import { StyleSheet } from 'react-native-unistyles';
 const styles = StyleSheet.create((theme, rt) => ({
     container: {
         flex: 1,
+        paddingTop: rt.insets.top,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: theme.colors.bg,
     },
     background: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        ...StyleSheet.absoluteFillObject,
     },
     topSection: {
+        justifyContent: 'center',
+        flexDirection: 'row',
         alignItems: 'center',
         paddingTop: 10,
     },
@@ -27,11 +26,9 @@ const styles = StyleSheet.create((theme, rt) => ({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
     },
-    heroImage: { width: rt.screen.width - 48, height: rt.screen.height * 0.3 },
+    heroImage: { width: rt.screen.width, height: rt.screen.height * 0.5 },
     headlineSection: {
-        marginTop: 24,
         alignItems: 'center',
     },
     headlineTitle: {

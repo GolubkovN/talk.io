@@ -16,6 +16,14 @@ export const stylesheet = StyleSheet.create((theme) => ({
           backgroundColor: theme.colors.primary,
           borderColor: theme.colors.primary,
         },
+        action: {
+          backgroundColor: theme.colors.action,
+          borderColor: theme.colors.action,
+        },
+        danger: {
+          backgroundColor: theme.colors.danger,
+          borderColor: theme.colors.danger,
+        },
         secondary: {
           backgroundColor: theme.colors.surface,
           borderColor: theme.colors.primary,
@@ -39,6 +47,12 @@ export const stylesheet = StyleSheet.create((theme) => ({
       variant: {
         primary: {
           color: theme.colors.onPrimary,
+        },
+        action: {
+          color: theme.colors.onAction,
+        },
+        danger: {
+          color: theme.colors.onDanger,
         },
         secondary: {
           color: theme.colors.primary,

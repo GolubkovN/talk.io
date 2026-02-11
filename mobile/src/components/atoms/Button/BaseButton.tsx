@@ -6,7 +6,7 @@ import { Image } from "expo-image";
 import { Paragraph2 } from "../Typography";
 import { stylesheet } from "./styles";
 
-export type ButtonVariant = "primary" | "secondary" | "auth" | "icon";
+export type ButtonVariant = "primary" | "action" | "danger" | "secondary" | "auth" | "icon";
 
 export type ButtonProps = Omit<PressableProps, "style"> & {
   label?: string;
@@ -35,16 +35,21 @@ export const BaseButton = ({
   const { theme } = useUnistyles();
   stylesheet.useVariants({ variant });
 
-  const variantLoadColor = variant === "primary"
-    ? theme.colors.onPrimary
-    : variant === "secondary"
-     ? theme.colors.primary
-     : theme.colors.textPrimary;
+  const variantLoadColor = {
+    'primary': theme.colors.onPrimary,
+    'action': theme.colors.onAction,
+    'danger': theme.colors.onDanger,
+    'secondary': theme.colors.primary,
+    'auth': theme.colors.textPrimary,
+    'icon': theme.colors.textSecondary,
+  }
+
+  const variantLoadColorByVariant = variantLoadColor[variant];
 
   const isIcon = !isLoading && !imageSource && iconName;
   const isImage = !isLoading && imageSource;
 
-  const icColor = iconColor || theme.colors.textSecondary;
+  const icColor = iconColor || variantLoadColorByVariant;
 
   const isIconLeft = isIcon && iconPosition === "left";
   const isIconRight = isIcon && iconPosition === "right";
@@ -64,7 +69,7 @@ export const BaseButton = ({
     >
 
       {
-        isLoading && <ActivityIndicator size="small" color={variantLoadColor} />
+        isLoading && <ActivityIndicator size="small" color={variantLoadColorByVariant} />
       }
 
       {
