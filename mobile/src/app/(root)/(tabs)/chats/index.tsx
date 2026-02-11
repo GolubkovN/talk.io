@@ -55,7 +55,6 @@ export default function ChatsScreen() {
         buttonLabel="Retry"
         iconSize={100}
         iconName="alert-circle-outline"
-        iconColor={theme.colors.danger}
         />
     </View>
   );

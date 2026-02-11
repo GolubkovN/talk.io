@@ -1,21 +1,33 @@
 import { View } from "react-native";
 import { Image } from "expo-image";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthSocial } from "@/src/hooks/useAuthSocial";
 import styles from './styles';
 import { useUnistyles } from "react-native-unistyles";
 import { AccentText, Title1 } from "@/src/components/atoms/Typography";
 import { AuthButton } from "@/src/components";
+import { LinearGradient } from "expo-linear-gradient";
+import { BlurView } from "expo-blur";
 
 export default function Login() {
   const { handleSocialAuth, loadingStrategy } = useAuthSocial();
   const { theme } = useUnistyles();
+
+
   
   return (
     <View style={styles.container}>
-      <View style={styles.background}></View>
+      <View style={styles.background}>
+        <LinearGradient 
+          colors={[theme.colors.bg, theme.colors.primary, theme.colors.onPrimary, theme.colors.bg]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          locations={[0, 0.5, 0.5, 1]}
+          style={styles.background}
+        />
 
-      <SafeAreaView>
+        <BlurView intensity={100} style={styles.background} />
+      </View>
+
         {/* Top Section - Branding */}
         <View style={styles.topSection}>
           <Image
@@ -31,7 +43,7 @@ export default function Login() {
         {/* CENTER SECTION - HERO IMG */}
         <View style={styles.centerSection}>
           <Image
-            source={require("../../../assets/images/auth.png")}
+            source={require("../../../assets/images/hero-auth.png")}
             style={styles.heroImage}
             contentFit="contain"
           />
@@ -78,8 +90,6 @@ export default function Login() {
             />    
           </View>
         </View>
-      </SafeAreaView>
-
     </View>
   );
 }

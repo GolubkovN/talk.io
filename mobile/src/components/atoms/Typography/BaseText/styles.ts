@@ -1,8 +1,9 @@
 import { typography } from "@/src/design/tokens";
 import { StyleSheet } from "react-native-unistyles";
 
-export const stylesheet = StyleSheet.create({
+export const stylesheet = StyleSheet.create((theme) => ({
   baseText: {
+    color: theme.colors.textPrimary,
     variants: {
       variant: {
         title1: {
@@ -29,4 +30,4 @@ export const stylesheet = StyleSheet.create({
       }
     }
   },
-});
+}));
