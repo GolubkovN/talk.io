@@ -1,13 +1,6 @@
 import { StyleSheet } from "react-native-unistyles";
 
 export const stylesheet = StyleSheet.create((theme, rt) => ({
-  container: {
-    flex: 1,
-    paddingHorizontal: theme.spacing[16],
-  },
-  inner: {
-    backgroundColor: theme.colors.bg,
-  },
   header: {
     position: 'absolute',
     left: 0,
@@ -17,11 +10,9 @@ export const stylesheet = StyleSheet.create((theme, rt) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: theme.spacing[16],
   },
-  emptyStateContainer: {
-    flex: 1,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+  title: {
+    color: theme.colors.textPrimary,
+    fontSize: theme.sizes.font.xl,
   },
-}))
+}));

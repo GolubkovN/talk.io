@@ -37,28 +37,26 @@ const styles = StyleSheet.create((theme, rt) => ({
     headlineTitle: {
       textAlign: 'center',
       color: theme.colors.titlePrimary,
-      fontSize: theme.radii.xxxl,
+      fontSize: theme.sizes.font.xxxl,
       lineHeight: 42
     },
     headlineText: {
       textAlign: 'center',
-      fontSize: theme.radii.xxl,
-      lineHeight: 32
+      fontSize: theme.sizes.font.xxl,
+      lineHeight: 32,
+      color: theme.colors.textPrimary,
     },
     authButtonsSection: {
       width: '100%',
       marginTop: 24,
       flexDirection: 'row',
       gap: 4,
-      justifyContent: 'space-between',
+      justifyContent: 'space-evenly',
+      flexWrap: 'wrap',
       paddingHorizontal: theme.spacing[16],
     },
     authButton: {
       flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    buttonContent: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
@@ -66,7 +64,6 @@ const styles = StyleSheet.create((theme, rt) => ({
       backgroundColor: theme.colors.buttonBlur,
       padding: theme.spacing[8],
       borderRadius: theme.radii.md,
-      width: rt.screen.width * 0.5 - 32,
       height: 48,
     },
     buttonText: {

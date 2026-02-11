@@ -1,18 +1,16 @@
-import { ActivityIndicator, Pressable, View } from "react-native";
+import { View } from "react-native";
 import { Image } from "expo-image";
-import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthSocial } from "@/src/hooks/useAuthSocial";
 import styles from './styles';
 import { useUnistyles } from "react-native-unistyles";
-import { AccentText, Paragraph2, Title1 } from "@/src/components/atoms/Typography";
+import { AccentText, Title1 } from "@/src/components/atoms/Typography";
+import { AuthButton } from "@/src/components";
 
 export default function Login() {
   const { handleSocialAuth, loadingStrategy } = useAuthSocial();
   const { theme } = useUnistyles();
   
-  const isLoading = loadingStrategy !== null;
-
   return (
     <View style={styles.container}>
       <View style={styles.background}></View>
@@ -49,45 +47,35 @@ export default function Login() {
           {/* AUTH BUTTONS */}
           <View style={styles.authButtonsSection}>
             {/* GOOGLE BTN */}
-            <Pressable
-              style={styles.buttonContent}
-              disabled={isLoading}
+            <AuthButton
+              label="Google"
               accessibilityRole="button"
               accessibilityLabel="Continue with Google"
+              isLoading={loadingStrategy === "oauth_google"}
+              imageSource={require("../../../assets/images/google.png")}
               onPress={() => handleSocialAuth("oauth_google")}
-            >
-             <View style={styles.buttonContent}>
-             {loadingStrategy === "oauth_google" ? (
-                <ActivityIndicator size="small" color={theme.colors.textPrimary} />
-              ) : (
-                <Image
-                    source={require("../../../assets/images/google.png")}
-                    style={{ width: 20, height: 20 }}
-                    contentFit="contain"
-                  />
-              )}
-              <Paragraph2 overrideStyle={styles.buttonText}>Google</Paragraph2>
-             </View>
-            </Pressable>
+            />
 
             {/* APPLE BTN */}
-            <Pressable
-              disabled={isLoading}
+            <AuthButton
+              label="Apple"
               accessibilityRole="button"
               accessibilityLabel="Continue with Apple"
+              isLoading={loadingStrategy === "oauth_apple"}
+              iconName="logo-apple"
+              iconColor={theme.colors.textPrimary}
               onPress={() => handleSocialAuth("oauth_apple")}
-            >
-              <View style={styles.buttonContent}>
-              {loadingStrategy === "oauth_apple" ? (
-                <ActivityIndicator size="small" color={theme.colors.textPrimary} />
-              ) : (
-                <>
-                  <Ionicons name="logo-apple" size={20} color={theme.colors.textPrimary} />
-                </>
-              )}
-              <Paragraph2 overrideStyle={styles.buttonText}>Apple</Paragraph2>
-              </View>
-            </Pressable>
+            />
+            {/* GITHUB BTN */}          
+            <AuthButton
+              label="GitHub"
+              accessibilityRole="button"
+              accessibilityLabel="Continue with GitHub"
+              isLoading={loadingStrategy === "oauth_github"}
+              iconName="logo-github"
+              iconColor={theme.colors.textPrimary}
+              onPress={() => handleSocialAuth("oauth_github")}
+            />    
           </View>
         </View>
       </SafeAreaView>

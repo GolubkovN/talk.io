@@ -40,7 +40,7 @@ export const palette = {
 export const semanticLight = {
   bg: palette.neutral[0],
   surface: palette.neutral[50],
-  border: palette.neutral[200],
+  border: palette.neutral[300],
 
   titlePrimary: palette.orange[500],
 
@@ -59,7 +59,7 @@ export const semanticLight = {
 export const semanticDark = {
   bg: palette.neutral[900],
   surface: palette.neutral[800],
-  border: palette.neutral[700],
+  border: palette.neutral[0],
 
   titlePrimary: palette.orange[500],
 

@@ -1,4 +1,4 @@
-import { semanticLight, spacing, radii, typography, fonts, semanticDark } from "../tokens";
+import { semanticLight, spacing, radii, typography, fonts, semanticDark, sizes } from "../tokens";
 
 
 export const breakpoints = {
@@ -15,6 +15,7 @@ export const lightTheme = {
   radii,
   typography,
   fonts,
+  sizes,
 } as const;
 
 export const darkTheme = {
@@ -23,6 +24,7 @@ export const darkTheme = {
   radii,
   typography,
   fonts,
+  sizes,
 } as const;
 
 export const appThemes = {
