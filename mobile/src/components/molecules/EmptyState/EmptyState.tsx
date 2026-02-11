@@ -11,17 +11,18 @@ type EmptyStateProps = {
   description: string;
   iconName?: ComponentProps<typeof Ionicons>['name'];
   iconSize?: number;
+  iconColor?: string;
   onPress?: () => void;
   buttonLabel?: string;
 }
-export const EmptyState = ({ title, description, iconName = "chatbox-ellipses-outline", iconSize = 150, onPress, buttonLabel}: EmptyStateProps) => {
+export const EmptyState = ({ title, description, iconName = "chatbox-ellipses-outline", iconSize = 150, onPress, buttonLabel, iconColor}: EmptyStateProps) => {
   const { theme } = useUnistyles();
   return (
     <View style={stylesheet.container}>
       <Ionicons
         name={iconName}
         size={iconSize}
-        color={theme.colors.textTertiary}
+        color={iconColor || theme.colors.textTertiary}
       />
       <AccentText overrideStyle={stylesheet.title}>{title}</AccentText>
       <Paragraph2 overrideStyle={stylesheet.description}>{description}</Paragraph2>

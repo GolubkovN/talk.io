@@ -5,11 +5,9 @@ import { useEffect } from "react";
 import { useFonts } from "expo-font";
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold } from "@expo-google-fonts/inter";
 import { Lobster_400Regular } from "@expo-google-fonts/lobster";
-import { useUnistyles } from "react-native-unistyles";
 
 // this wrapper layout is used to imolement protected routes and avoid clerk provider limitations
 export default function SemiRootLayout() {
-  const { theme } = useUnistyles();
   const { isSignedIn, isLoaded } = useAuth();
   const [loaded] = useFonts({
     Inter_400Regular,
@@ -33,6 +31,7 @@ export default function SemiRootLayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={!!isSignedIn}>
         <Stack.Screen name="(tabs)" options={{ animation: "fade", }} />
+        <Stack.Screen name="chat/[id]" options={{ animation: "fade" }} />
       </Stack.Protected>
       <Stack.Protected guard={!isSignedIn}>
         <Stack.Screen name="(auth)" options={{ animation: "fade" }} />

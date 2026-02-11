@@ -1,6 +1,7 @@
 import { API_BASE_URL } from '@/config/env'
 import { getClerkInstance } from '@clerk/clerk-expo';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { Chat } from '../types';
 
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',
@@ -24,7 +25,12 @@ export const apiSlice = createApi({
         method: 'POST',
       }),
     }),
+    getChats: build.query<Chat[], void>({
+      query: () => ({
+        url: '/chats',
+      }),
+    }),
   }),
 })
 
-export const { useAuthCallbackMutation } = apiSlice;
+export const { useAuthCallbackMutation, useGetChatsQuery } = apiSlice;

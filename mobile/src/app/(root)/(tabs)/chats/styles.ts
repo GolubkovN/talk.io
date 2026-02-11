@@ -4,6 +4,7 @@ export const stylesheet = StyleSheet.create((theme, rt) => ({
   container: {
     flex: 1,
     paddingHorizontal: theme.spacing[16],
+    marginTop: rt.insets.top,
   },
   inner: {
     backgroundColor: theme.colors.bg,
