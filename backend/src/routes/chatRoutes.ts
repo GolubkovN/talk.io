@@ -7,6 +7,6 @@ const router = Router();
 router.use(protectRoute);
 
 router.get('/', getChatsController);
-router.get('/with/:participantId', getChatWithParticipantController);
+router.post('/with/:participantId', getChatWithParticipantController);
 
 export default router;

@@ -1,11 +1,11 @@
-import { Title2 } from "@/src/components";
-import { View } from "react-native"
+import { ScrollView } from "react-native"
+import { stylesheet } from "./styles";
 
 const ChatDetailsScreen = () => {
   return (
-    <View>
-      <Title2>Chat Details</Title2>
-    </View>
+    <ScrollView contentInsetAdjustmentBehavior="automatic" style={stylesheet.inner} contentContainerStyle={stylesheet.container}>
+
+    </ScrollView>
   )
 }
 

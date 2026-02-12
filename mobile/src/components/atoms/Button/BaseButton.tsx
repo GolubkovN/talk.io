@@ -18,6 +18,7 @@ export type ButtonProps = Omit<PressableProps, "style"> & {
   iconPosition?: "left" | "right";
   imageSource?: ImageSourcePropType;
   isLoading?: boolean;
+  buttonSize?: 's' | 'm';
 };
 
 export const BaseButton = ({
@@ -30,6 +31,7 @@ export const BaseButton = ({
   imageSource,
   isLoading = false,
   iconColor,
+  buttonSize = 'm',
   ...props
 }: ButtonProps) => {
   const { theme } = useUnistyles();

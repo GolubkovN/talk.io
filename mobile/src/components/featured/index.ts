@@ -1,2 +1,2 @@
 export * from './AuthSync';
-export * from './headers';
+export * from './header';

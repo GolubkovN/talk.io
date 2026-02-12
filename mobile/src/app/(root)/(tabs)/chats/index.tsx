@@ -11,7 +11,11 @@ export default function ChatsScreen() {
 
   const router = useRouter();
   const { theme } = useUnistyles();
-  const { data: chats, isLoading, refetch, isError } = useGetChatsQuery();
+  const { data: chats, isLoading, refetch, isError } = useGetChatsQuery(undefined,{
+    refetchOnMountOrArgChange: true,
+    refetchOnFocus: true,
+    refetchOnReconnect: true,
+  });
 
   const onChatPressHandler = (chat: Chat) => {
     router.push({
@@ -25,13 +29,19 @@ export default function ChatsScreen() {
     })
   };
 
+  const handleStartNewChat = () => {
+    router.push({
+      pathname: "/new-chat",
+    })
+  }
+
   const renderEmptyState = () => {
     return (
       <View style={stylesheet.emptyStateContainer}>
         <EmptyState 
           title="No conversations yet" 
           description="Start a new conversation." 
-          onPress={() => {}}  
+          onPress={handleStartNewChat}  
           buttonLabel="Start a new conversation"
           iconSize={100}
           iconName="chatbubbles-outline"
@@ -60,15 +70,17 @@ export default function ChatsScreen() {
   );
 
   return (
-    <FlatList
-      contentContainerStyle={stylesheet.container}
+    <View style={stylesheet.container}>
+      <FlatList
+      contentInsetAdjustmentBehavior="automatic"
+      contentContainerStyle={ stylesheet.listContainer }
       showsVerticalScrollIndicator={false}
-      style={stylesheet.inner}
       data={chats ?? []}
       scrollEnabled={(chats?.length ?? 0) > 0}
       renderItem={({item: chat}) => <ChatCard chat={chat} onPress={() => onChatPressHandler(chat)}/>}
       keyExtractor={({_id}) => _id}
       ListEmptyComponent={() => renderEmptyState()} />
+    </View>
   );
 }
 

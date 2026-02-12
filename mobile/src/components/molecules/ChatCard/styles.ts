@@ -20,7 +20,7 @@ export const stylesheet = StyleSheet.create((theme) => ({
   },
   textContent: {
     flex: 1,
-    height: 72,
+    height: 60,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: theme.spacing[8],
