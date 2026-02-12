@@ -6,8 +6,8 @@ import { useRouter } from 'expo-router';
 import { useUnistyles } from 'react-native-unistyles';
 import { useState } from 'react';
 import { useGetOrCreateChatMutation, useGetUsersQuery } from '@/src/store';
-import { useDebounce } from '@/src/hooks/useDebaunce';
 import { TUser } from '@/src/types';
+import { useDebounce } from '@/src/hooks/useDebounce';
 
 const NewChatScreen = () => {
   const [searchTerm, setSearchTerm] = useState('');

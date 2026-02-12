@@ -18,7 +18,7 @@ type ChatsHeaderProps = {
 export const AppHeader = ({ onLeftPress, onRightPress, rightIconName, leftIconName, title, withAvatar = false, avatar = '' }: ChatsHeaderProps) => {
   const { theme } = useUnistyles();
   return (
-    <LinearGradient colors={[theme.colors.bg, 'transparent']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} locations={[0, 0, 0.5, 0.5]} style={stylesheet.header}>
+    <LinearGradient colors={[theme.colors.bg, 'transparent']} start={{ x: 0, y: 1 }} end={{ x: 0, y: 1 }} locations={[0, 1]} style={stylesheet.header}>
       <BluredView>
         <IconButton iconName={leftIconName} iconColor={theme.colors.textPrimary} onPress={onLeftPress} />
       </BluredView>

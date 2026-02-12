@@ -34,7 +34,7 @@ export const apiSlice = createApi({
     }),
     getUsers: build.query<TUser[], string>({
       query: (term) => ({
-        url: `/users?q=${term}`,
+        url: `/users?q=${encodeURIComponent(term)}`,
       }),
     }),
     getOrCreateChat: build.mutation<Chat, { participantId: string }>({

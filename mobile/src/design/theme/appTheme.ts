@@ -10,6 +10,7 @@ export const breakpoints = {
 }
 
 export const lightTheme = {
+  name: 'light',
   colors: semanticLight,
   spacing,
   radii,
@@ -19,6 +20,7 @@ export const lightTheme = {
 } as const;
 
 export const darkTheme = {
+  name: 'dark',
   colors: semanticDark,
   spacing,
   radii,

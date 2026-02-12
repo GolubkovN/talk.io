@@ -33,7 +33,7 @@ export default function RootLayout() {
             <Stack.Screen name="(root)" options={{ headerShown: false }} />
           </Stack>
         </GestureHandlerRootView>
-        <StatusBar style="auto" />
+        <StatusBar style={theme.name === 'dark' ? 'light' : 'dark'} />
       </ReduxProvider>
     </ClerkProvider>
   );

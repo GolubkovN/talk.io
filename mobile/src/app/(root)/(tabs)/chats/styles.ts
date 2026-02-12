@@ -23,6 +23,7 @@ export const stylesheet = StyleSheet.create((theme, rt) => ({
     marginBottom: theme.spacing[16],
   },
   emptyStateContainer: {
+    backgroundColor: theme.colors.bg,
     flex: 1,
     justifyContent: 'space-evenly',
     alignItems: 'center',

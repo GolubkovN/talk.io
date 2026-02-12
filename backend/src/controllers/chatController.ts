@@ -34,10 +34,13 @@ export const getChatWithParticipantController = async (req: AuthRequest, res: Re
   try {
     const userId = req.userId;
     const { participantId } = req.params;
-    console.log("participantId", participantId);
     
     if (!participantId) {
       return res.status(400).json({ message: "Participant ID is required" });
+    }
+
+    if (!isValidObjectId(participantId)) {
+      return res.status(400).json({ message: "Invalid participant ID" });
     }
 
     if (participantId === userId) {

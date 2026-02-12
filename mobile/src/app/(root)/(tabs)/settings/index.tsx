@@ -1,21 +1,22 @@
-import { Paragraph2, DangerButton, Title1 } from '@/src/components/atoms';
+import { DangerButton, Title1 } from '@/src/components/atoms';
 import { useAppDispatch, useAppSelector } from '@/src/hooks/store';
 import { clearCurrentUser, selectCurrentUser } from '@/src/store';
 import { useAuth } from '@clerk/clerk-expo';
 import { Image } from 'expo-image';
-import { ComponentProps, useState } from 'react';
-import { Pressable, ScrollView, View } from 'react-native';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 import { stylesheet } from './styles';
 import { MENU_SECTIONS } from '@/src/constats';
 import { Paragraph } from '@/src/components/atoms/Typography/Paragraph';
-import { Ionicons } from '@expo/vector-icons';
-import { useUnistyles } from 'react-native-unistyles';
+import { UnistylesRuntime, useUnistyles } from 'react-native-unistyles';
 import { SettingItem } from '@/src/components';
+import { save } from '@/src/utils';
 
 export default function SettingsScreen() {
-  const [ signOutLoading, setSignOutLoading ] = useState(false);
-
   const { theme } = useUnistyles();
+  const [ signOutLoading, setSignOutLoading ] = useState(false);
+  const [ darkMode, setDarkMode ] = useState<boolean>(theme.name === 'dark');
+
   const { signOut } = useAuth();
   const currentUser = useAppSelector(selectCurrentUser);
   const dispatch = useAppDispatch();
@@ -31,6 +32,18 @@ export default function SettingsScreen() {
       }
   }
 
+  const handlersMap = {
+    'notifications': () => {
+      console.log('notifications');
+    },
+    'darkMode': () => {
+      const currentTheme = theme.name === 'light' ? 'dark' : 'light';
+      UnistylesRuntime.setTheme(currentTheme);
+      setDarkMode(currentTheme === 'dark');
+      save('theme', currentTheme);
+    },
+  }
+
   return (
    <ScrollView 
     showsVerticalScrollIndicator={false} 
@@ -42,16 +55,31 @@ export default function SettingsScreen() {
     </View>
 
     <View style={stylesheet.menuSections}>
-      {MENU_SECTIONS.map((section) => (
+      {MENU_SECTIONS.map((section) => {
+        return (
         <View key={section.title}>
           <Paragraph>{section.title}</Paragraph>
           <View style={stylesheet.menuItems}>
-            {section.items.map((item) => (
-              <SettingItem key={item.label} item={item} onPress={() => {}} />
-            ))}
+            {section.items.map((item) => {
+              const handler =
+                'option' in item && typeof item.option === 'string'
+                  ? handlersMap[item.option]
+                  : undefined;
+                  
+              const switchValue = 'option' in item && item.option === 'darkMode' ? darkMode : false;
+              return (
+                <SettingItem
+                  switchValue={switchValue}
+                  control={item.type}
+                  key={item.label}
+                  item={item}
+                  onPress={handler ? handler : () => {}}
+                />
+              );
+            })}
           </View>
         </View>
-      ))}
+      )})}
     </View>
 
     <DangerButton 
