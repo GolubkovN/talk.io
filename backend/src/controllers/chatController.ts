@@ -34,13 +34,10 @@ export const getChatWithParticipantController = async (req: AuthRequest, res: Re
   try {
     const userId = req.userId;
     const { participantId } = req.params;
+    console.log("participantId", participantId);
     
     if (!participantId) {
       return res.status(400).json({ message: "Participant ID is required" });
-    }
-
-    if (!isValidObjectId(participantId)) {
-      return res.status(400).json({ message: "Invalid participant ID" });
     }
 
     if (participantId === userId) {
@@ -57,11 +54,11 @@ export const getChatWithParticipantController = async (req: AuthRequest, res: Re
       chat = await newChat.populate('participants', 'name email avatar');
     }
 
-    const oyherChatParticipant = chat.participants.find((participant) => participant._id.toString() !== userId) ?? null;
+    const otherChatParticipant = chat.participants.find((participant) => participant._id.toString() !== userId) ?? null;
 
     return res.status(200).json({
       _id: chat._id,
-      participant: oyherChatParticipant,
+      participant: otherChatParticipant,
       lastMessage: chat.lastMessage,
       lastMessageAt: chat.lastMessageAt,
       createdAt: chat.createdAt,

@@ -4,10 +4,12 @@ export const stylesheet = StyleSheet.create((theme, rt) => ({
   container: {
     flex: 1,
     paddingHorizontal: theme.spacing[16],
-    marginTop: rt.insets.top,
-  },
-  inner: {
+    paddingTop: rt.insets.top,
     backgroundColor: theme.colors.bg,
+  },
+  listContainer: {
+    flex: 1,
+    marginTop: rt.insets.top,
   },
   header: {
     position: 'absolute',

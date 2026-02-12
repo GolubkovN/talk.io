@@ -32,6 +32,12 @@ export default function SemiRootLayout() {
       <Stack.Protected guard={!!isSignedIn}>
         <Stack.Screen name="(tabs)" options={{ animation: "fade", }} />
         <Stack.Screen name="chat/[id]" options={{ animation: "fade" }} />
+        <Stack.Screen name="new-chat" options={{
+          animation: "slide_from_bottom", 
+          presentation: "modal", 
+          gestureEnabled: true, 
+          sheetGrabberVisible: true,
+        }} />
       </Stack.Protected>
       <Stack.Protected guard={!isSignedIn}>
         <Stack.Screen name="(auth)" options={{ animation: "fade" }} />

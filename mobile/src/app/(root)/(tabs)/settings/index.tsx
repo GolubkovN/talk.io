@@ -10,6 +10,7 @@ import { MENU_SECTIONS } from '@/src/constats';
 import { Paragraph } from '@/src/components/atoms/Typography/Paragraph';
 import { Ionicons } from '@expo/vector-icons';
 import { useUnistyles } from 'react-native-unistyles';
+import { SettingItem } from '@/src/components';
 
 export default function SettingsScreen() {
   const [ signOutLoading, setSignOutLoading ] = useState(false);
@@ -46,18 +47,7 @@ export default function SettingsScreen() {
           <Paragraph>{section.title}</Paragraph>
           <View style={stylesheet.menuItems}>
             {section.items.map((item) => (
-              <Pressable key={item.label} style={({ pressed }) => [stylesheet.menuItem, pressed && stylesheet.menuItemPressed]} onPress={() => {}}>
-                <View style={[stylesheet.menuItemIcon, { backgroundColor: `${item.color}20` }]}>
-                  <Ionicons name={item.icon as ComponentProps<typeof Ionicons>['name']} size={24} color={item.color} />
-                </View>
-                <View style={stylesheet.menuItemContent}>
-                  <Paragraph2>{item.label}</Paragraph2>
-                  <View style={stylesheet.menuItemValue}>
-                    <Paragraph2>{item.value}</Paragraph2>
-                    <Ionicons name="chevron-forward-outline" size={24} color={theme.colors.textPrimary} />
-                  </View>
-                </View>
-              </Pressable>
+              <SettingItem key={item.label} item={item} onPress={() => {}} />
             ))}
           </View>
         </View>
