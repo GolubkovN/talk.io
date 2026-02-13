@@ -11,9 +11,6 @@ export default function TabLayout() {
         <Icon sf="gear" drawable="custom_settings_drawable" />
         <Label>Settings</Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="search" role="search">
-        <Label>Search</Label>
-      </NativeTabs.Trigger>
     </NativeTabs>
   );
 }

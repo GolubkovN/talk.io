@@ -1,0 +1,6 @@
+export const HEADER_MAX_HEIGHT = 240;
+export const HEADER_MIN_HEIGHT = 96;
+export const SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+export const AVATAR_SIZE = 150;
+export const IMAGE_WIDTH = '100%';
+export const IMAGE_HEIGHT = HEADER_MAX_HEIGHT;

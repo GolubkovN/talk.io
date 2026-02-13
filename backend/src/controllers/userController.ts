@@ -31,3 +31,15 @@ export const getUsersController = async (req: AuthRequest, res: Response, next: 
     next(error);
   }
 }
+
+export const getUserByIdController = async (req: AuthRequest, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error("Error in getUserController", error);
+    res.status(500);
+    next(error);
+  }
+}

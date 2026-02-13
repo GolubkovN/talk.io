@@ -57,7 +57,7 @@ const NewChatScreen = () => {
   return (
     <View style={stylesheet.container}>
       <View style={stylesheet.header}>
-        <IconButton iconName="close-outline" onPress={() => router.back()} containerStyle={stylesheet.closeButton} iconSize={24} iconColor={theme.colors.textPrimary} />
+        <IconButton iconName="close-outline" onPress={() => router.back()} containerStyle={stylesheet.closeButton} iconSize={32} iconColor={theme.colors.onAction} />
         <View style={stylesheet.headerContent}>
           <Caption>New Chat</Caption>
           <Paragraph2 overrideStyle={stylesheet.headerDescription}>Search for a user to start a new chat</Paragraph2>

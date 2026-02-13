@@ -8,9 +8,15 @@ export default function ChatsLayout() {
       pathname: "/new-chat",
     })
   }
+
+  const handleScanPress = () => {
+    router.push({
+      pathname: "/scaner",
+    })
+  }
   
   return (
-    <Stack screenOptions={{ header: () => <AppHeader onRightPress={handleStartNewChat} rightIconName="person-add-outline" title="All Conversations" leftIconName="qr-code-outline" /> }}>
+    <Stack screenOptions={{ header: () => <AppHeader onLeftPress={handleScanPress} onRightPress={handleStartNewChat} rightIconName="person-add-outline" title="All Conversations" leftIconName="qr-code-outline" /> }}>
       <Stack.Screen
         name="index"
       />

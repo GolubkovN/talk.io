@@ -38,6 +38,7 @@ export default function SemiRootLayout() {
           gestureEnabled: true, 
           sheetGrabberVisible: true,
         }} />
+        <Stack.Screen name="profile" />
       </Stack.Protected>
       <Stack.Protected guard={!isSignedIn}>
         <Stack.Screen name="(auth)" options={{ animation: "fade" }} />

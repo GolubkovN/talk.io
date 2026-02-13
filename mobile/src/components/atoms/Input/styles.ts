@@ -16,5 +16,6 @@ export const stylesheet = StyleSheet.create((theme) => ({
   searchInput: {
     paddingVertical: theme.spacing[16],
     flex: 1,
+    color: theme.colors.textPrimary,
   },
 }));

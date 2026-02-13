@@ -11,7 +11,7 @@ export default function ChatsScreen() {
 
   const router = useRouter();
   const { theme } = useUnistyles();
-  const { data: chats, isLoading, refetch, isError } = useGetChatsQuery(undefined,{
+  const { data: chats, isLoading, isFetching, refetch, isError } = useGetChatsQuery(undefined,{
     refetchOnMountOrArgChange: true,
     refetchOnFocus: true,
     refetchOnReconnect: true,
@@ -50,7 +50,7 @@ export default function ChatsScreen() {
     );
   };
 
-  if (isLoading) return (
+  if (isLoading || isFetching) return (
     <View style={stylesheet.emptyStateContainer}>
       <ActivityIndicator color={theme.colors.primary} size="large"/>
     </View>

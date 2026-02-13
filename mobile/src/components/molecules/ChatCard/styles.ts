@@ -12,15 +12,9 @@ export const stylesheet = StyleSheet.create((theme) => ({
     marginBottom: theme.spacing[4],
     alignItems: 'center',
   },
-  onlineIndicator: {
-    width: 10,
-    height: 10,
-    borderRadius: theme.radii.pill,
-    backgroundColor: theme.colors.success,
-  },
   textContent: {
     flex: 1,
-    height: 60,
+    height: 66,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: theme.spacing[8],
