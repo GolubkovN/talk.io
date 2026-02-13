@@ -5,7 +5,6 @@ import { Paragraph2 } from "../../atoms";
 import { Avatar } from "../../atoms/Avatar/Avatar";
 import { Caption } from "../../atoms/Typography/Caption";
 import { stylesheet } from "./styles";
-import { useUnistyles } from "react-native-unistyles";
 
 type ChatCardProps = {
   chat: Chat;
@@ -13,14 +12,13 @@ type ChatCardProps = {
 }
 
 export const ChatCard = ({ chat, onPress }: ChatCardProps) => {
-  const { theme } = useUnistyles();
-  const isOnline = false;
+  const isOnline = true;
   const isTyping = false;
   const hasUnreadMessages = false;
 
   return (
    <Pressable onPress={onPress} style={stylesheet.container}>
-    <Avatar source={chat.participant.avatar} isOnline={isOnline} />
+    <Avatar source={chat.participant.avatar} isOnline={isOnline} onPress={onPress} />
 
     <View style={stylesheet.textContent}>
       <View>
@@ -28,8 +26,6 @@ export const ChatCard = ({ chat, onPress }: ChatCardProps) => {
         <Caption numberOfLines={1} ellipsizeMode="tail">
             {chat.participant.name}
           </Caption>
-
-          <View style={[stylesheet.onlineIndicator, { backgroundColor: isOnline ? theme.colors.success : theme.colors.textTertiary }]} />
        </View>
 
         <Paragraph2 numberOfLines={2} ellipsizeMode="tail">

@@ -23,13 +23,17 @@ export const AppHeader = ({ onLeftPress, onRightPress, rightIconName, leftIconNa
         <IconButton iconName={leftIconName} iconColor={theme.colors.textPrimary} onPress={onLeftPress} />
       </BluredView>
 
-      <BluredView>
-        <View style={stylesheet.titleContainer}>
-          <Caption overrideStyle={stylesheet.title}>{title}</Caption>
-        </View>
-      </BluredView>
+      {
+        title && (
+          <BluredView>
+            <View style={stylesheet.titleContainer}>
+              <Caption overrideStyle={stylesheet.title}>{title}</Caption>
+            </View>
+          </BluredView>
+        )
+      }
 
-      { !withAvatar && (
+      { !withAvatar && rightIconName && (
         <BluredView>
           <IconButton iconName={rightIconName} iconColor={theme.colors.textPrimary} onPress={onRightPress} />
         </BluredView>
@@ -37,7 +41,7 @@ export const AppHeader = ({ onLeftPress, onRightPress, rightIconName, leftIconNa
       }
       { withAvatar && (
         <BluredView>
-          <Avatar source={avatar} width={48} height={48} onPress={onRightPress} />
+          <Avatar source={avatar} width={40} height={40} onPress={onRightPress} />
         </BluredView>
       ) }
     </LinearGradient>

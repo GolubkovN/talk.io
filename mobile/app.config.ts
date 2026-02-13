@@ -76,6 +76,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         "configureAndroidBackup": true,
         "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
       }
+    ],
+    [
+      "expo-camera",
+      {
+        "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+        "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+        "recordAudioAndroid": true
+      }
     ]
   ],
 
